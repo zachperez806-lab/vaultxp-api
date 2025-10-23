@@ -13,7 +13,27 @@ app.get("/", (req, res) => {
 app.get("/health", (req, res) => {
   res.json({ ok: true, ts: Date.now() });
 });
+// Mock offers (replace with provider feed later)
+const OFFERS = [
+  {
+    id: "ofr_1",
+    title: "Install & reach level 5",
+    payout_cents: 150, // $1.50 to user
+    device: "android",
+    provider: "mock"
+  },
+  {
+    id: "ofr_2",
+    title: "Complete intro survey",
+    payout_cents: 100,
+    device: "desktop",
+    provider: "mock"
+  }
+];
 
+app.get("/offers", (req, res) => {
+  res.json({ offers: OFFERS });
+});
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
